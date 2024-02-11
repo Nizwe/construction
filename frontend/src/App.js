@@ -8,7 +8,7 @@ function App() {
       <header className="App-header">
         <img src="/under_construction.png" className="App-logo" alt="logo" />
         <p>
-         Weizenbier werden eingeschenkt
+         Weizenbiere werden eingeschenkt
         </p>
         
       </header>
