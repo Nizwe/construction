@@ -14,8 +14,8 @@ services:
       
     volumes:
       - ./nginx:/etc/nginx/conf.d
-      - ./certbot/conf:/etc/letsencrypt 
-      - ./certbot/www:/var/www/certbot
+      - ./nginx/certbot/conf:/etc/letsencrypt 
+      - ./nginx/certbot/www:/var/www/certbot
   certbot:
     image: certbot/certbot
     restart: unless-stopped
