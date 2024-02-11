@@ -1,0 +1,36 @@
+# Use an official Node runtime as a parent image
+# AS build: 2 stages. else nginx copy wont work 
+FROM node:16-alpine AS build
+
+# Set the working directory in the container
+WORKDIR /app/frontend
+
+COPY --from=frontend package.json ./
+COPY --from=frontend package-lock.json ./
+
+RUN npm install
+# Copy the current directory contents into the container at /app
+COPY --from=frontend  . ./
+
+# Install dependencies
+RUN npm run build
+
+
+# Run the app
+# CMD ["npm", "start"]
+
+
+# Use an official Nginx image as a parent image
+FROM nginx
+
+COPY default.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/frontend/build /usr/share/nginx/html
+# Copy nginx configuration file
+COPY ./default.conf /etc/nginx/default.conf
+
+
+
+
+
+
+
