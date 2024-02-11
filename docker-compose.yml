@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+    nginx: 
+        restart: unless-stopped
+        build:
+            context: ./nginx
+            additional_contexts:
+              frontend: ./frontend
+            dockerfile: ./Dockerfile.prod
+        ports:
+            - 80:80
+
+            
