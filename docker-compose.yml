@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  nginx:
+    restart: unless-stopped
+    build:
+      context: ./nginx
+      additional_contexts:
+        frontend: ./frontend
+      dockerfile: ./Dockerfile.prod
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx:/etc/nginx/conf.d 
+      - ./nginx:/etc/nginx/ssl
+  
